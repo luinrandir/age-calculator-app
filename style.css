@@ -68,6 +68,7 @@ body {
   place-content: center;
 }
 
+/* General app class */
 .app {
   --border-accent-radius: 100px;
   max-width: 343px;
@@ -80,28 +81,23 @@ body {
   padding-block: 3rem;
 }
 
-.middle {
-  display: grid;
+/* top class */
+form {
+  display: flex;
 }
 
-hr {
-  height: 1%;
-  align-self: center;
-}
-.middle > * {
-  grid-area: 1/1;
-}
-
-.button {
-  place-self: center;
-  width: max-content;
-  background-color: hsl(var(--pclr-purple));
-  border: none;
-  border-radius: 100%;
+label {
+  --label-font-size: 0.75rem;
+  font-size: var(--label-font-size);
+  letter-spacing: 0.25em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: hsl(var(--nclr-smokey-grey));
 }
 
-svg {
-  --size: 24px;
-  width: var(--size);
-  height: var(--size);
+input {
+  width: 87.67px;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  border: solid 1px hsl(var(--nclr-light-grey));
 }

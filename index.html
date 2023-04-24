@@ -36,48 +36,51 @@
       <div class="app">
         <div class="top">
           <form>
-            <section>
-              <label for="day">day</label>
-              <input
-                type="text"
-                inputmode="number"
-                id="day"
-                name="day"
-                placeholder="DD"
-                required
-              />
-            </section>
-            <section>
-              <label for="month">month</label>
-              <input
-                type="text"
-                inputmode="number"
-                id="month"
-                name="month"
-                placeholder="MM"
-                required
-              />
-            </section>
-            <section>
-              <label for="year">year</label>
-              <input
-                type="text"
-                inputmode="number"
-                id="year"
-                name="year"
-                placeholder="YYYY"
-                required
-              />
-            </section>
+            <div class="inputs">
+              <section>
+                <label for="day">day</label>
+                <input
+                  type="text"
+                  inputmode="number"
+                  id="day"
+                  name="day"
+                  placeholder="DD"
+                  required
+                />
+              </section>
+              <section>
+                <label for="month">month</label>
+                <input
+                  type="text"
+                  inputmode="number"
+                  id="month"
+                  name="month"
+                  placeholder="MM"
+                  required
+                />
+              </section>
+              <section>
+                <label for="year">year</label>
+                <input
+                  type="text"
+                  inputmode="number"
+                  id="year"
+                  name="year"
+                  placeholder="YYYY"
+                  required
+                />
+              </section>
+            </div>
+            <div class="middle">
+              <hr />
+              <button type="submit" class="button">
+                <img src="/assets/images/icon-arrow.svg" alt="Downward Arrow" />
+              </button>
+              <hr class="right-line" />
+            </div>
           </form>
         </div>
-        <div class="middle">
-          <hr />
-          <button type="submit" class="button">
-            <img src="/assets/images/icon-arrow.svg" alt="Downward Arrow" />
-          </button>
-          <hr class="right-line" />
-        </div>
+
         <div class="bottom">
           <p data-number="year">years</p>
           <p data-number="months">months</p>

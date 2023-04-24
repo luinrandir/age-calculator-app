@@ -39,6 +39,10 @@ svg {
 
 /* Custom Properties */
 :root {
+  /* Screen Sizes */
+  --mobile: 343px;
+  --desktop: 840px;
+
   /* Colors - Using HSL values instead of hsl() p->primary n->neutral*/
   --pclr-purple: 259 100% 65%;
   --pclr-light-red: 0 100% 67%;
@@ -71,7 +75,7 @@ body {
 /* General app class */
 .app {
   --border-accent-radius: 100px;
-  max-width: 343px;
+  width: var(--mobile);
   background-color: hsl(var(--nclr-white));
   border-radius: 24px 24px var(--border-accent-radius) 24px;
   display: flex;
@@ -80,14 +84,12 @@ body {
   padding-inline: 1.5rem;
   padding-block: 3rem;
 }
-@media (width<840px) {
-  .app {
-    max-width: 840px;
-  }
-}
 
 /* top class */
 form {
+  display: grid;
+}
+.inputs {
   display: flex;
   gap: 1rem;
 }
@@ -106,8 +108,10 @@ label {
 }
 
 input {
+  --input-font-size: 1.25rem;
   outline: none;
   caret-color: hsl(var(--pclr-purple));
+  font-size: var(--input-font-size);
   width: 87.67px;
   border-radius: 8px;
   padding: 0.75rem 1rem;
@@ -125,13 +129,18 @@ input:focus {
   justify-content: center;
 }
 .button {
-  width: 64px;
-  height: 64px;
+  --button-size: 64px;
+  width: var(--button-size);
+  height: var(--button-size);
+  cursor: pointer;
   border: none;
   border-radius: 100%;
   background-color: hsl(var(--pclr-purple));
   display: grid;
   place-content: center;
+}
+.button:is(:hover, :focus) {
+  background-color: hsl(var(--nclr-off-black));
 }
 hr {
   height: 1px;
@@ -149,4 +158,35 @@ hr {
 p[data-number]:before {
   content: "--";
   color: hsl(var(--pclr-purple));
+}
+
+/* Media queries */
+@media (width>840px) {
+  body {
+    --body-font-size: 0.875rem;
+  }
+  .app {
+    --border-accent-radius: 200px;
+    width: var(--desktop);
+  }
+  form {
+    gap: 2rem;
+  }
+  label {
+    --label-font-size: 0.875rem;
+  }
+  input {
+    --input-font-size: 2rem;
+    width: 160px;
+    height: 72px;
+  }
+  .button {
+    --button-size: 96px;
+  }
+  .right-line {
+    display: none;
+  }
+  .bottom p {
+    --output-font-size: 6.5rem;
+  }
 }

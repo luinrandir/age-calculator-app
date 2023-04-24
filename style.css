@@ -1,0 +1,107 @@
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  text-rendering: optimizeSpeed;
+}
+
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Custom Properties */
+:root {
+  /* Colors - Using HSL values instead of hsl() p->primary n->neutral*/
+  --pclr-purple: 259 100% 65%;
+  --pclr-light-red: 0 100% 67%;
+  --nclr-white: 0 0% 100%;
+  --nclr-off-white: 0 0% 94%;
+  --nclr-light-grey: 0 0% 86%;
+  --nclr-smokey-grey: 0 1% 44%;
+  --nclr-off-black: 0 0% 8%;
+
+  /* Typography */
+  /* Fonts */
+  --ff-primary: "Poppins", sans-serif;
+
+  /* Weights */
+  --fw-base: 400;
+  --fw-bold: 700;
+  --fw-extra-bold: 800;
+}
+
+/* General Styles */
+body {
+  --body-font-size: 0.75rem;
+  background-color: hsl(var(--nclr-light-grey));
+  font-family: var(--ff-primary);
+  font-weight: var(--fw-base);
+  display: grid;
+  place-content: center;
+}
+
+.app {
+  --border-accent-radius: 100px;
+  max-width: 343px;
+  background-color: hsl(var(--nclr-white));
+  border-radius: 24px 24px var(--border-accent-radius) 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-inline: 1.5rem;
+  padding-block: 3rem;
+}
+
+.middle {
+  display: grid;
+}
+
+hr {
+  height: 1%;
+  align-self: center;
+}
+.middle > * {
+  grid-area: 1/1;
+}
+
+.button {
+  place-self: center;
+  width: max-content;
+  background-color: hsl(var(--pclr-purple));
+  border: none;
+  border-radius: 100%;
+}
+
+svg {
+  --size: 24px;
+  width: var(--size);
+  height: var(--size);
+}

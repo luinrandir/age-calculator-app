@@ -80,10 +80,20 @@ body {
   padding-inline: 1.5rem;
   padding-block: 3rem;
 }
+@media (width<840px) {
+  .app {
+    max-width: 840px;
+  }
+}
 
 /* top class */
 form {
   display: flex;
+  gap: 1rem;
+}
+section {
+  display: grid;
+  gap: 0.25em;
 }
 
 label {
@@ -96,8 +106,47 @@ label {
 }
 
 input {
+  outline: none;
+  caret-color: hsl(var(--pclr-purple));
   width: 87.67px;
   border-radius: 8px;
   padding: 0.75rem 1rem;
   border: solid 1px hsl(var(--nclr-light-grey));
+}
+
+input:focus {
+  border: solid 1px hsl(var(--pclr-purple));
+}
+
+/* middle class */
+.middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button {
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 100%;
+  background-color: hsl(var(--pclr-purple));
+  display: grid;
+  place-content: center;
+}
+hr {
+  height: 1px;
+  flex: 1;
+}
+
+/* bottom class */
+.bottom p {
+  --output-font-size: 3.5rem;
+  color: hsl(var(--nclr-off-black));
+  font-style: italic;
+  font-weight: var(--fw-extra-bold);
+  font-size: var(--output-font-size);
+}
+p[data-number]:before {
+  content: "--";
+  color: hsl(var(--pclr-purple));
 }

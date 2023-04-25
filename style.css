@@ -148,6 +148,11 @@ hr {
 }
 
 /* bottom class */
+.output {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
 .bottom p {
   --output-font-size: 3.5rem;
   color: hsl(var(--nclr-off-black));
@@ -155,8 +160,7 @@ hr {
   font-weight: var(--fw-extra-bold);
   font-size: var(--output-font-size);
 }
-p[data-number]:before {
-  content: "--";
+p[data-number] {
   color: hsl(var(--pclr-purple));
 }
 

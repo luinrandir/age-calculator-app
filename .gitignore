@@ -17,5 +17,6 @@
 
 design/
 fonts/
+node_modules
 style-guide.md
 README-guide.md

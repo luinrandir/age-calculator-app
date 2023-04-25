@@ -1,0 +1,15 @@
+{
+  "name": "age-calculator-app",
+  "version": "1.0.0",
+  "description": "Frontend Mentor Challenge: Age Calculator App",
+  "main": "age.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0"
+  }
+}

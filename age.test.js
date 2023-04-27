@@ -1,6 +1,6 @@
-const calculateAge = require("./age");
+const { calculateAge, isLeapYear } = require("./age");
 
-const expectedResults = [
+const expectedAgeResults = [
   { years: 32, months: 3, days: 22 },
   { years: 32, months: 0, days: 10 },
   { years: 68, months: 7, days: 12 },
@@ -12,7 +12,7 @@ const expectedResults = [
   { years: 3, months: 3, days: 18 },
   { years: 1, months: 5, days: 1 },
 ];
-const testInputs = [
+const testAgeInputs = [
   [1990, 1, 3, new Date("4-25-2022")],
   [1975, 12, 23, new Date("1-2-2008")],
   [1954, 5, 13, new Date("12-25-2022")],
@@ -25,8 +25,29 @@ const testInputs = [
   [2004, 4, 15, new Date("9-16-2005")],
 ];
 
-for (let i in testInputs) {
-  test(`Test #${parseInt(i) + 1}`, () => {
-    expect(calculateAge(...testInputs[i])).toEqual(expectedResults[i]);
+const testLeapInputs = [
+  1999, 2000, 1992, 1578, 1200, 850, 400, 1000, 2024, 2013,
+];
+const expectedLeapResults = [
+  false,
+  true,
+  true,
+  false,
+  true,
+  false,
+  true,
+  true,
+  true,
+  false,
+];
+
+for (let i in testAgeInputs) {
+  test(`calcAge Test #${parseInt(i) + 1}`, () => {
+    expect(calculateAge(...testAgeInputs[i])).toEqual(expectedAgeResults[i]);
+  });
+}
+for (let i in testLeapInputs) {
+  test(`isLeapYear Test #${parseInt(i) + 1}`, () => {
+    expect(isLeapYear(testLeapInputs[i])).toEqual(expectedLeapResults[i]);
   });
 }

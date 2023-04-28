@@ -20,7 +20,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="age.js" defer></script>
+    <script type="module" src="age.js" defer></script>
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
     <style>
       .attribution {
@@ -36,7 +36,7 @@
     <main>
       <div class="app">
         <div class="top">
-          <form>
+          <form id="mainForm">
             <div class="inputs">
               <section>
                 <label for="day">day</label>
@@ -48,6 +48,7 @@
                   placeholder="DD"
                   required
                 />
+                <span id="errorDay" class="error"></span>
               </section>
               <section>
                 <label for="month">month</label>
@@ -59,6 +60,7 @@
                   placeholder="MM"
                   required
                 />
+                <span id="errorMonth" class="error"></span>
               </section>
               <section>
                 <label for="year">year</label>
@@ -70,11 +72,12 @@
                   placeholder="YYYY"
                   required
                 />
+                <span id="errorYear" class="error"></span>
               </section>
             </div>
             <div class="middle">
               <hr />
-              <button type="submit" class="button">
+              <button id="btn" type="submit" class="button">
                 <img src="/assets/images/icon-arrow.svg" alt="Downward Arrow" />
               </button>
               <hr class="right-line" />

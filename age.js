@@ -1,3 +1,13 @@
+const submitButton = document.getElementById("btn");
+const form = document.getElementById("mainForm");
+const errorSections = document.getElementsByTagName("section");
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  for (let section in errorSections) {
+    errorSections[section].toggleAttribute("data-error");
+  }
+});
+
 const year = document.querySelector("[data-number='year']");
 const months = document.querySelector("[data-number='months']");
 const days = document.querySelector("[data-number='days']");

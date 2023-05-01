@@ -1,16 +1,20 @@
-const submitButton = document.getElementById("btn");
-const form = document.getElementById("mainForm");
-const errorSections = document.getElementsByTagName("section");
-submitButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  for (let section in errorSections) {
-    errorSections[section].toggleAttribute("data-error");
-  }
-});
-
-const year = document.querySelector("[data-number='year']");
+const years = document.querySelector("[data-number='year']");
 const months = document.querySelector("[data-number='months']");
 const days = document.querySelector("[data-number='days']");
+const inputYear = document.getElementById("year");
+const inputMonth = document.getElementById("month");
+const inputDay = document.getElementById("day");
+const errorYear = document.getElementById("errorYear");
+const errorMonth = document.getElementById("errorMonth");
+const errorDay = document.getElementById("errorDay");
+const submitButton = document.getElementById("btn");
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  let calcAge = calculateAge(inputYear.value, inputMonth.value, inputDay.value);
+  years.innerText = calcAge.years;
+  months.innerText = calcAge.months;
+  days.innerText = calcAge.days;
+});
 
 function calculateAge(birthYear, birthMonth, birthDate, today = new Date()) {
   let currentYear = today.getFullYear();

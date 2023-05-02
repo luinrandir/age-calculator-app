@@ -1,6 +1,16 @@
+const years = document.querySelector("[data-number=years]");
+const months = document.querySelector("[data-number=months]");
+const days = document.querySelector("[data-number=days]");
 const validateForm = (formSelector) => {
   const formElement = document.querySelector(formSelector);
   formElement.setAttribute("novalidate", "");
+  const dateLessOrEqual = (year, month, day) => {
+    const today = new Date();
+    if (year > today.getFullYear()) return false;
+    if (year < today.getFullYear()) return true;
+    if (month <= today.getMonth() + 1 && day <= today.getDate()) return true;
+    return false;
+  };
   const validationOptions = [
     {
       attribute: "required",
@@ -33,12 +43,29 @@ const validateForm = (formSelector) => {
     },
     {
       attribute: "data-year",
-      isValid: (input, section = null) =>
-        input.value >= 1 && input.value < new Date().getFullYear(),
+      isValid: (input, section = null) => {
+        const month =
+          section.previousElementSibling.querySelector("input").id === "month"
+            ? section.previousElementSibling.querySelector("input")
+            : null;
+        const day =
+          section.previousElementSibling.previousElementSibling.querySelector(
+            "input"
+          ).id === "day"
+            ? section.previousElementSibling.previousElementSibling.querySelector(
+                "input"
+              )
+            : null;
+        return (
+          input.value >= 1 &&
+          dateLessOrEqual(input.value, month.value, day.value)
+        );
+      },
       errorMessage: "Must be in the past",
     },
   ];
   const validateSingleInput = (section) => {
+    let isValid = true;
     const sectionInput = section.querySelector("input");
     const sectionError = section.querySelector("span");
     sectionError.innerText = "";
@@ -49,21 +76,40 @@ const validateForm = (formSelector) => {
       ) {
         sectionError.innerText = option.errorMessage;
         section.parentElement.setAttribute("data-error", "");
+        isValid = false;
         break;
       }
     }
+    return isValid;
   };
 
   formElement.addEventListener("submit", (e) => {
     e.preventDefault();
-    validateInputs(formElement);
-    console.log("It worked");
+    let validForm = validateInputs(formElement);
+    if (validForm) callAPI(formElement);
+    console.log(validForm);
   });
 
   const validateInputs = (formToValidate) => {
     const sections = Array.from(formToValidate.querySelectorAll("section"));
-    sections.forEach((section) => validateSingleInput(section));
+    let formValid = [];
+    sections.forEach((section) => formValid.push(validateSingleInput(section)));
+    if (formValid.every((currentValue) => currentValue === true)) {
+      sections[0].parentElement.removeAttribute("data-error");
+      return true;
+    }
+    return false;
   };
+};
+
+const callAPI = (formElement) => {
+  const formObject = Array.from(formElement.elements)
+    .filter((element) => element.type !== "submit")
+    .reduce((acc, element) => ({ ...acc, [element.id]: element.value }), {});
+  let results = calculateAge(formObject.year, formObject.month, formObject.day);
+  years.innerText = results.years;
+  months.innerText = results.months;
+  days.innerText = results.days;
 };
 
 validateForm("#mainForm");

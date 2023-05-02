@@ -48,6 +48,7 @@
                   min="1"
                   max="31"
                   required
+                  data-day
                 />
                 <span id="errorDay" class="error"></span>
               </section>
@@ -61,6 +62,7 @@
                   min="1"
                   max="12"
                   required
+                  data-month
                 />
                 <span id="errorMonth" class="error"></span>
               </section>
@@ -73,13 +75,14 @@
                   placeholder="YYYY"
                   min="1"
                   required
+                  data-year
                 />
                 <span id="errorYear" class="error"></span>
               </section>
             </div>
             <div class="middle">
               <hr />
-              <button id="btn" type="submit" class="button">
+              <button type="submit" class="button">
                 <img src="/assets/images/icon-arrow.svg" alt="Downward Arrow" />
               </button>
               <hr class="right-line" />

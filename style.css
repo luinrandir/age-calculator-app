@@ -107,11 +107,11 @@ label {
   text-transform: uppercase;
   color: hsl(var(--nclr-smokey-grey));
 }
-section[data-error] label,
+.inputs[data-error] label,
 input {
   color: hsl(var(--pclr-light-red));
 }
-section[data-error] input {
+.inputs[data-error] input {
   color: hsl(var(--pclr-light-red));
   border-color: hsl(var(--pclr-light-red));
 }

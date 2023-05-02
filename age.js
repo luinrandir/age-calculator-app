@@ -1,21 +1,72 @@
-const years = document.querySelector("[data-number='year']");
-const months = document.querySelector("[data-number='months']");
-const days = document.querySelector("[data-number='days']");
-const inputYear = document.getElementById("year");
-const inputMonth = document.getElementById("month");
-const inputDay = document.getElementById("day");
-const errorYear = document.getElementById("errorYear");
-const errorMonth = document.getElementById("errorMonth");
-const errorDay = document.getElementById("errorDay");
-const submitButton = document.getElementById("btn");
-submitButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  let calcAge = calculateAge(inputYear.value, inputMonth.value, inputDay.value);
-  years.innerText = calcAge.years;
-  months.innerText = calcAge.months;
-  days.innerText = calcAge.days;
-});
+const validateForm = (formSelector) => {
+  const formElement = document.querySelector(formSelector);
+  formElement.setAttribute("novalidate", "");
+  const validationOptions = [
+    {
+      attribute: "required",
+      isValid: (input, section = null) => input.value.trim() !== "",
+      errorMessage: "This field is required",
+    },
+    {
+      attribute: "data-day",
+      isValid: (input, section = null) => {
+        const month =
+          section.nextElementSibling.querySelector("input").id === "month"
+            ? section.nextElementSibling.querySelector("input")
+            : null;
+        const year =
+          section.nextElementSibling.nextElementSibling.querySelector("input")
+            .id === "year"
+            ? section.nextElementSibling.nextElementSibling.querySelector(
+                "input"
+              )
+            : null;
 
+        return input.value <= new Date(year.value, month.value, 0).getDate();
+      },
+      errorMessage: "Must be a valid day",
+    },
+    {
+      attribute: "data-month",
+      isValid: (input, section = null) => input.value >= 1 && input.value <= 12,
+      errorMessage: "Must be a valid month",
+    },
+    {
+      attribute: "data-year",
+      isValid: (input, section = null) =>
+        input.value >= 1 && input.value < new Date().getFullYear(),
+      errorMessage: "Must be in the past",
+    },
+  ];
+  const validateSingleInput = (section) => {
+    const sectionInput = section.querySelector("input");
+    const sectionError = section.querySelector("span");
+    sectionError.innerText = "";
+    for (const option of validationOptions) {
+      if (
+        sectionInput.hasAttribute(option.attribute) &&
+        !option.isValid(sectionInput, section)
+      ) {
+        sectionError.innerText = option.errorMessage;
+        section.parentElement.setAttribute("data-error", "");
+        break;
+      }
+    }
+  };
+
+  formElement.addEventListener("submit", (e) => {
+    e.preventDefault();
+    validateInputs(formElement);
+    console.log("It worked");
+  });
+
+  const validateInputs = (formToValidate) => {
+    const sections = Array.from(formToValidate.querySelectorAll("section"));
+    sections.forEach((section) => validateSingleInput(section));
+  };
+};
+
+validateForm("#mainForm");
 function calculateAge(birthYear, birthMonth, birthDate, today = new Date()) {
   let currentYear = today.getFullYear();
   let currentMonth = today.getMonth() + 1;
@@ -54,4 +105,4 @@ function isLeapYear(currentYear) {
   }
   return false;
 }
-module.exports = { calculateAge, isLeapYear };
+//module.exports = { calculateAge, isLeapYear };

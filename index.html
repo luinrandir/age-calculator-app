@@ -41,11 +41,12 @@
               <section>
                 <label for="day">day</label>
                 <input
-                  type="text"
-                  inputmode="number"
+                  type="number"
                   id="day"
                   name="day"
                   placeholder="DD"
+                  min="1"
+                  max="31"
                   required
                 />
                 <span id="errorDay" class="error"></span>
@@ -53,11 +54,12 @@
               <section>
                 <label for="month">month</label>
                 <input
-                  type="text"
-                  inputmode="number"
+                  type="number"
                   id="month"
                   name="month"
                   placeholder="MM"
+                  min="1"
+                  max="12"
                   required
                 />
                 <span id="errorMonth" class="error"></span>
@@ -65,11 +67,11 @@
               <section>
                 <label for="year">year</label>
                 <input
-                  type="text"
-                  inputmode="number"
+                  type="number"
                   id="year"
                   name="year"
                   placeholder="YYYY"
+                  min="1"
                   required
                 />
                 <span id="errorYear" class="error"></span>
